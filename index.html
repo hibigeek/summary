@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：日本語フォントの世界</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #e2e8f0;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.3s ease;
+        }
+        .flowchart-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .flowchart-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 4rem;
+            color: #94a3b8;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .decision-node {
+            background-color: #fff;
+            border: 2px solid #F9D423;
+        }
+        .result-node {
+            background-color: #E1F5C4;
+            border: 2px solid #FF4E50;
+            font-weight: bold;
+        }
+        .connector-line {
+            width: 2px;
+            background-color: #cbd5e1;
+            margin: 0 auto;
+            height: 2rem;
+        }
+        .horizontal-connector {
+            flex-grow: 1;
+            height: 2px;
+            background-color: #cbd5e1;
+        }
+        .connector-label {
+            padding: 0 1rem;
+            background-color: #f8fafc;
+            color: #475569;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">インフォグラフィック：日本語フォントの世界</h1>
+            <p class="text-gray-600 mt-1">伝えたい印象は、フォントが創る。</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="intro" class="text-center mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">フォントを選べば、印象が変わる</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-700">日本語フォントは、単なる文字の形ではありません。漢字、ひらがな、カタカナ。三種の文字が織りなす複雑で美しい世界は、あなたのメッセージに「感情」と「個性」を与えます。このインフォグラフィックで、その奥深い世界を探検しましょう。</p>
+        </section>
+
+        <section id="giants" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2">二大巨頭：ゴシック体 vs 明朝体</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">現代の日本語組版を支える二つの基本書体。その違いが、デザインの方向性を決定づけます。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-2 text-center">ゴシック体 <span class="text-sm font-normal text-gray-500">(Gothic)</span></h3>
+                    <p class="text-center text-6xl mb-4 font-bold" style="font-family: 'Noto Sans JP', sans-serif;">あア愛</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start"><span class="text-xl mr-2" style="color: #FF4E50;">●</span>線の太さが均一で、力強く現代的。</li>
+                        <li class="flex items-start"><span class="text-xl mr-2" style="color: #FF4E50;">●</span>「うろこ」（セリフ）がなく、シンプル。</li>
+                        <li class="flex items-start"><span class="text-xl mr-2" style="color: #FF4E50;">●</span>視認性が高く、デジタル画面や見出しに最適。</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-2 text-center">明朝体 <span class="text-sm font-normal text-gray-500">(Mincho)</span></h3>
+                    <p class="text-center text-6xl mb-4 font-bold" style="font-family: 'Noto Serif JP', serif;">あア愛</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start"><span class="text-xl mr-2" style="color: #FC913A;">●</span>縦線が太く、横線が細い。筆文字のような強弱。</li>
+                        <li class="flex items-start"><span class="text-xl mr-2" style="color: #FC913A;">●</span>「うろこ」があり、上品で伝統的な印象。</li>
+                        <li class="flex items-start"><span class="text-xl mr-2" style="color: #FC913A;">●</span>可読性が高く、長文の印刷物（書籍など）に最適。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-center mb-4">主な用途の比較</h3>
+                <p class="text-center text-gray-600 mb-6">ゴシック体はデジタルの世界で、明朝体は印刷の世界で特に力を発揮します。</p>
+                <div class="chart-container">
+                    <canvas id="usageChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="feeling" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-12">フォントで「感情」をデザインする</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-center mb-4">丸ゴシック体：親しみやすさの象徴</h3>
+                    <p class="text-center text-gray-600 mb-6">ゴシック体の角を丸くしただけで、こんなに優しく、安心感のある表情に。子供向けやカジュアルな場面で大活躍します。</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="maruGothicChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-center mb-4">楷書体：誠実さと格式を伝える</h3>
+                    <p class="text-center text-gray-600 mb-6">一画一画を丁寧に書く、書道の基本。その整った形は、フォーマルな場面で信頼性と礼儀正しさを伝えます。</p>
+                    <div class="flex-grow flex flex-col items-center justify-center text-center p-4">
+                        <span class="text-7xl" role="img" aria-label="賞状">📜</span>
+                        <p class="text-2xl font-bold mt-4">公文書・賞状・教育現場で</p>
+                        <p class="text-gray-600">最も基本とされる書体です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="history" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2">歴史を旅する：書道の五体</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">漢字の成り立ちと共に進化した、書道の五つの基本書体。その流れは、文字の芸術性の探求そのものです。</p>
+            <div class="w-full max-w-4xl mx-auto">
+                <div class="flowchart-node">
+                    <h4 class="font-bold text-xl">篆書体 (Tensho)</h4>
+                    <p class="text-sm text-gray-500">紀元前 | 最も古く、装飾的</p>
+                    <p class="mt-2">印鑑やパスポートに見られる権威の象徴。</p>
+                </div>
+                <div class="flowchart-connector">↓</div>
+                <div class="flowchart-node">
+                    <h4 class="font-bold text-xl">隷書体 (Reisho)</h4>
+                    <p class="text-sm text-gray-500">秦・漢 | 実用化への第一歩</p>
+                    <p class="mt-2">波打つような横画（波磔）が特徴。紙幣にも使用。</p>
+                </div>
+                <div class="flowchart-connector">↓</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 relative">
+                    <div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-300 hidden md:block" style="transform: translateY(-50%); z-index: -1;"></div>
+                    <div class="flowchart-node">
+                        <h4 class="font-bold text-xl">草書体 (Sosho)</h4>
+                        <p class="text-sm text-gray-500">芸術的・流麗</p>
+                        <p class="mt-2">隷書を極限まで崩した、最も芸術的な書体。</p>
+                    </div>
+                    <div class="flowchart-node">
+                        <h4 class="font-bold text-xl">行書体 (Gyosho)</h4>
+                        <p class="text-sm text-gray-500">実用的・流麗</p>
+                        <p class="mt-2">楷書を少し崩した、手紙などで多用される美しい書体。</p>
+                    </div>
+                    <div class="flowchart-node">
+                        <h4 class="font-bold text-xl">楷書体 (Kaisho)</h4>
+                        <p class="text-sm text-gray-500">標準的・端正</p>
+                        <p class="mt-2">隷書を整えた、現代の文字の基本形。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="guide" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2">実践！フォント選択ガイド</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">もうフォント選びで迷わない。いくつかの質問に答えるだけで、あなたの目的に最適なフォントが見つかります。</p>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="flex flex-col items-center">
+                    <div class="flowchart-node decision-node w-full md:w-1/2">
+                        <p class="font-bold">Q1. 主な媒体は？</p>
+                    </div>
+                    <div class="connector-line"></div>
+
+                    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+                        <div class="flex flex-col items-center">
+                            <div class="flowchart-node w-full bg-gray-100 border-gray-300">
+                                <p class="font-bold text-gray-700">デジタル画面</p>
+                            </div>
+                            <div class="connector-line"></div>
+                            <div class="flowchart-node decision-node w-full">
+                                <p class="font-bold">Q2. 用途は？</p>
+                            </div>
+                            <div class="connector-line"></div>
+                            <div class="grid grid-cols-2 gap-4 w-full">
+                                <div class="flowchart-node result-node">
+                                    <p>太いゴシック体<br>装飾書体</p>
+                                    <p class="text-sm text-gray-600 mt-1">見出し</p>
+                                </div>
+                                <div class="flowchart-node result-node">
+                                    <p>ゴシック体<br>UDフォント</p>
+                                    <p class="text-sm text-gray-600 mt-1">本文</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                            <div class="flowchart-node w-full bg-gray-100 border-gray-300">
+                                <p class="font-bold text-gray-700">印刷物</p>
+                            </div>
+                            <div class="connector-line"></div>
+                            <div class="flowchart-node decision-node w-full">
+                                <p class="font-bold">Q3. どんな印象？</p>
+                            </div>
+                            <div class="connector-line"></div>
+                            <div class="grid grid-cols-2 gap-4 w-full">
+                                <div class="flowchart-node result-node">
+                                    <p>明朝体<br>楷書体</p>
+                                    <p class="text-sm text-gray-600 mt-1">フォーマル</p>
+                                </div>
+                                <div class="flowchart-node result-node">
+                                    <p>丸ゴシック体<br>手書き書体</p>
+                                    <p class="text-sm text-gray-600 mt-1">カジュアル</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-6">
+        <p>&copy; 2025 Font Infographic. All rights reserved.</p>
+        <p class="text-xs text-gray-400 mt-2">This infographic was generated based on expert analysis of Japanese font characteristics.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const FONT_COLORS = {
+                red: '#FF4E50',
+                orange: '#FC913A',
+                yellow: '#F9D423',
+                lightGreen: '#E1F5C4',
+                gray: '#94a3b8'
+            };
+
+            const wrapLabel = (str, maxLen = 16) => {
+                if (str.length <= maxLen) {
+                    return str;
+                }
+                const words = str.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > maxLen) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                }
+                lines.push(currentLine.trim());
+                return lines.filter(line => line.length > 0);
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const defaultChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#1f2937',
+                            font: {
+                                family: "'Inter', 'Noto Sans JP', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        titleFont: {
+                            family: "'Inter', 'Noto Sans JP', sans-serif"
+                        },
+                        bodyFont: {
+                            family: "'Inter', 'Noto Sans JP', sans-serif"
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#4b5563',
+                            font: {
+                                family: "'Inter', 'Noto Sans JP', sans-serif"
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#4b5563',
+                            font: {
+                                family: "'Inter', 'Noto Sans JP', sans-serif"
+                            }
+                        },
+                        grid: {
+                            color: '#e5e7eb'
+                        }
+                    }
+                }
+            };
+            
+            const usageCtx = document.getElementById('usageChart');
+            if(usageCtx) {
+                new Chart(usageCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['デジタル・Web', '印刷・フォーマル'],
+                        datasets: [{
+                            label: 'ゴシック体',
+                            data: [75, 25],
+                            backgroundColor: FONT_COLORS.red,
+                            borderColor: FONT_COLORS.red,
+                            borderWidth: 1
+                        }, {
+                            label: '明朝体',
+                            data: [25, 75],
+                            backgroundColor: FONT_COLORS.orange,
+                            borderColor: FONT_COLORS.orange,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                stacked: true,
+                                ticks: {
+                                    callback: function(value) { return value + "%" }
+                                }
+                            },
+                            y: {
+                                stacked: true,
+                                grid: { display: false }
+                            }
+                        },
+                        plugins: {
+                           ...defaultChartOptions.plugins,
+                           tooltip: {
+                               ...defaultChartOptions.plugins.tooltip,
+                               callbacks: {
+                                   ...defaultChartOptions.plugins.tooltip.callbacks,
+                                   label: function(context) {
+                                       let label = context.dataset.label || '';
+                                       if (label) {
+                                           label += ': ';
+                                       }
+                                       if (context.parsed.x !== null) {
+                                           label += context.parsed.x + '%';
+                                       }
+                                       return label;
+                                   }
+                               }
+                           }
+                        }
+                    }
+                });
+            }
+
+            const maruGothicCtx = document.getElementById('maruGothicChart');
+            if(maruGothicCtx) {
+                new Chart(maruGothicCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['子供向けコンテンツ', 'カジュアルな広告', '公共の標識', 'Webサイト'],
+                        datasets: [{
+                            label: '主な用途',
+                            data: [40, 30, 15, 15],
+                            backgroundColor: [
+                                FONT_COLORS.red,
+                                FONT_COLORS.orange,
+                                FONT_COLORS.yellow,
+                                FONT_COLORS.lightGreen,
+                            ],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: { x: { display: false }, y: { display: false } }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
